@@ -1,11 +1,8 @@
-import { React, useEffect } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   let location = useLocation();
-  useEffect(() => {
-    console.log(location.pathname);
-  }, [location]);
 
   return (
     <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
@@ -31,7 +28,7 @@ export default function Navbar() {
                 Home
               </Link>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <Link className={`nav-link ${location.pathname==="/about" && "active"}`} to="/about">
                 About
               </Link>
