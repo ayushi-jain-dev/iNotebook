@@ -1,13 +1,18 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () =>  {
-  let location = useLocation();
+  let location= useLocation();
+  let navigate = useNavigate();
+  const handleLogout=() =>{
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
 
   return (
-    <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-lg bg-body-secondary bg-dark" data-bs-theme="dark">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/home">
           iNotebook
         </Link>
         <button
@@ -24,7 +29,7 @@ const Navbar = () =>  {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className={`nav-link ${location.pathname==="/" && "active"}`} aria-current="page" to="/home">
+              <Link className={`nav-link ${location.pathname==="/home" && "active"}`} aria-current="page" to="/home">
                 Home
               </Link>
             </li>
@@ -34,10 +39,14 @@ const Navbar = () =>  {
               </Link>
             </li>
           </ul>
+          {!localStorage.getItem('token')?<form className = 'd-flex'>
+            <Link className = "btn btn-primary mx-1" to = "/Login" role = "button">Login</Link>
+            <Link className = "btn btn-primary mx-1" to = "/signup" role = "button">SignUp</Link>
+          </form>:<button onClick = {handleLogout} className="btn btn-primary">Logout</button>}
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
 export default Navbar
