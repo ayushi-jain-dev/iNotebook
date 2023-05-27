@@ -66,6 +66,7 @@ export default function About() {
               <strong>Browser Compatible</strong>
             </button>
           </h2>
+
           <div
             id="collapseThree"
             className="accordion-collapse collapse"
